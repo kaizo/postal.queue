@@ -1,0 +1,47 @@
+<html>
+<head>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/postal.js/lib/postal.js"></script>
+    <script src="src/queue.js"></script>
+</head>
+<body>
+    <div class="submitter">
+        <input type="text" id="submitterText">
+        <button id="submitter">Submit</button>
+    </div>
+    <div class="subscribers">
+        <div>subscriber1: <span id="subscriber1" class="subscriber"></span></div>
+        <div>subscriber2: <span id="subscriber2" class="subscriber"></span></div>
+        <div>subscriber3: <span id="subscriber3" class="subscriber"></span></div>
+        <div>subscriber4: <span id="subscriber4" class="subscriber"></span></div>
+    </div>
+
+    <script>
+        postal.createQueue({
+            topic: "testQueue"
+        });
+
+        for (var i = 1; i < 5; i++) {
+            (function (pos) {
+
+                postal.subscribe({
+                    "topic": "testQueue",
+                    "callback": function (data) {
+                        debugger;
+                        $("#subscriber" + pos).html(data);
+                    }
+                });
+            }(i));
+        }
+
+        $("#submitter").click(function () {
+            postal.publish({
+                "topic": "testQueue",
+                "data": $("#submitterText").val()
+            });
+        })
+    </script>
+
+</body>
+</html>

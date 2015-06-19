@@ -1,0 +1,27 @@
+{
+  "name": "postal.queue",
+  "version": "0.0.0",
+  "authors": [
+    "Francesc Dalmau <francescdalmau@gmail.com>"
+  ],
+  "description": "Queue plugin for postal",
+  "main": "src/queue.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "queue",
+    "postal"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "postal.js": "~1.0.6"
+  }
+}
